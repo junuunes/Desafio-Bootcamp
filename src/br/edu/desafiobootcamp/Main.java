@@ -10,10 +10,15 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+
+        Instrutor instrutor1 = new Instrutor();
+        instrutor1.setNome("Venilton Javeiro");
+
         Curso cursoJavaBasico = new Curso();
         cursoJavaBasico.setTitulo("Java Básico");
         cursoJavaBasico.setDescricao("Aprenda os conceitos básicos sobre Java.");
         cursoJavaBasico.setCargahoraria(8);
+        cursoJavaBasico.setInstrutor(instrutor1);
 
         Curso cursoDotNet = new Curso();
         cursoDotNet.setTitulo("Java .NET");
@@ -31,7 +36,7 @@ public class Main {
         mentoria.setData(LocalDateTime.now().plusDays(1));
         /*LocalDateTime É uma classe do pacote java.time (a API moderna de datas e horas do Java).
         LocalDateTime.now() Cria um objeto de data e hora atual do sistema.
-        .plusDays(1) Esse método não altera o objeto original, mas cria um novo com 1 dia a mais.
+        .plusDays(1) Esse métod0 não altera o objeto original, mas cria um novo com 1 dia a mais.
         */
 
         Bootcamp bootcamp = new Bootcamp();
@@ -39,12 +44,12 @@ public class Main {
         bootcamp.setInicio(LocalDate.now());
         bootcamp.setFim(bootcamp.getInicio().plusDays(45));
         /*bootcamp.getInicio() Aqui está lendo o valor armazenado no atributo inicio do objeto bootcamp.
-        .plusDays(45) Esse método não altera o valor original, ele cria um novo objeto com 45 dias a mais.
+        .plusDays(45) Esse métod0 não altera o valor original, ele cria um novo objeto com 45 dias a mais.
         setFim() Ele recebe o resultado da expressão anterior (a nova data com +45 dias) e guarda no atributo fim.
         */
         List<ConteudoEducacional> conteudos = Arrays.asList(cursoJavaBasico, cursoJavaAvancado, mentoria);
         /* É uma lista que só pode conter objetos da classe ConteudoEducacional (ou classes que herdem dela).
-        Arrays.asList(...) método estático da classe Arrays. Ele serve para criar uma lista a partir de elementos já existentes.
+        Arrays.asList(...) métod0 estático da classe Arrays. Ele serve para criar uma lista a partir de elementos já existentes.
         Nesse caso a lista de objetos.
         Tem tamanho fixo e não dá para adicionar e remover elementos depois
          */
@@ -74,9 +79,18 @@ public class Main {
         System.out.println(String.format("XP JULIANA: %.2f", devCadastrado1.calcularXP()));
         System.out.println(String.format("XP IGOR: %.2f", devCadastrado2.calcularXP()));
 
-        List<Devs> ranking = Arrays.asList(devCadastrado1, devCadastrado2).stream().sorted((dev2, dev1) -> Double.compare(dev1.calcularXP(), dev2.calcularXP())).collect(Collectors.toList());
+        List<Devs> ranking = Arrays.asList(devCadastrado1, devCadastrado2).stream().sorted((dev2, dev1) -> Double
+                .compare(dev1.calcularXP(), dev2.calcularXP())).collect(Collectors.toList());
         for (Devs dev : ranking){
             System.out.println(dev.getNome());
         }
+        /* O Java cria uma lista com dois objetos (devCadastrado1 e devCadastrado2).
+        Transforma a lista em um Stream (fluxo de dados).
+        Usa sorted() para comparar o XP de cada dev e reordenar.
+        Usa collect() para transformar o Stream de volta em uma lista.
+        Guarda o resultado na variável ranking.
+        Percorre o ranking e imprime os nomes dos devs, já em ordem de XP.
+         */
+
     }
 }
